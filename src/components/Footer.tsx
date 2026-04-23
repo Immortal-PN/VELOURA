@@ -1,0 +1,1 @@
+export default function Footer() { return <footer className='px-8 py-16 mt-16 bg-ivory border-t border-pink-100'><div className='font-heading text-2xl mb-4'>VELOURA</div><p className='text-secondary'>Luxury That Feels Expensive. Isn't.</p></footer>; }
