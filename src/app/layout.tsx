@@ -4,6 +4,7 @@ import "./globals.css";
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StoreProvider from "@/components/StoreProvider";
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-body" });
@@ -21,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${poppins.variable} font-body antialiased bg-ivory text-primary min-h-screen selection:bg-blush selection:text-primary flex flex-col`}>
-        <AnnouncementBar />
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <StoreProvider>
+          <AnnouncementBar />
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

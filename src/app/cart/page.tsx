@@ -28,7 +28,7 @@ export default function Cart() {
               <div className='w-24 h-24 bg-blush/20 rounded-[12px]'></div>
               <div className='flex-grow'>
                 <h3 className='font-heading text-lg'>{item.name}</h3>
-                <p className='text-secondary mb-2'>?{item.price}</p>
+                <p className='text-secondary mb-2'>&#8377;{item.price}</p>
                 <div className='flex items-center gap-4'>
                   <div className='flex items-center border border-gray-200 rounded-[8px]'>
                     <button onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))} className='px-3 py-1 text-secondary hover:text-primary'>-</button>
@@ -38,16 +38,19 @@ export default function Cart() {
                   <button onClick={() => removeFromCart(item.id)} className='text-red-400 text-sm hover:underline'>Remove</button>
                 </div>
               </div>
-              <div className='font-medium text-lg'>?{item.price * item.quantity}</div>
+              <div className='font-medium text-lg'>&#8377;{item.price * item.quantity}</div>
             </div>
           ))}
+          <Link href='/shop' className='inline-block mt-2'>
+            <Button variant='secondary'>&larr; Continue Shopping</Button>
+          </Link>
         </div>
-        <div className='w-full md:w-1/3'>
-          <div className='bg-ivory p-8 rounded-[16px] border border-pink-100'>
+        <div className='w-full md:w-1/3 relative'>
+          <div className='bg-ivory p-8 rounded-[16px] border border-pink-100 sticky top-24'>
             <h3 className='font-heading text-xl mb-6'>Order Summary</h3>
-            <div className='flex justify-between mb-4 text-secondary'><span>Subtotal</span><span>?{subtotal}</span></div>
+            <div className='flex justify-between mb-4 text-secondary'><span>Subtotal</span><span>&#8377;{subtotal}</span></div>
             <div className='flex justify-between mb-6 text-secondary'><span>Shipping</span><span>Calculated at checkout</span></div>
-            <div className='flex justify-between mb-8 font-heading text-2xl pt-4 border-t border-gray-200'><span>Total</span><span>?{subtotal}</span></div>
+            <div className='flex justify-between mb-8 font-heading text-2xl pt-4 border-t border-gray-200'><span>Total</span><span>&#8377;{subtotal}</span></div>
             <Link href='/checkout'><Button className='w-full'>Proceed to Checkout</Button></Link>
           </div>
         </div>
@@ -55,4 +58,3 @@ export default function Cart() {
     </Section>
   );
 }
-
