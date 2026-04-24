@@ -1,18 +1,19 @@
 'use client';
-import { use, useState } from 'react';
+import { useState } from 'react';
+import { useParams } from 'next/navigation';
 import Section from '@/components/ui/Section';
 import Button from '@/components/ui/Button';
 import { useProductStore, useCartStore, useWishlistStore } from '@/lib/store';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-export default function Product({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
+export default function Product() {
+  const params = useParams<{ id: string }>();
   const products = useProductStore(state => state.products);
-  const product = products.find(p => p.id === resolvedParams.id);
+  const product = products.find(p => p.id === params.id);
   const addToCart = useCartStore(state => state.addToCart);
   const toggleWishlist = useWishlistStore(state => state.toggleWishlist);
-  const isWishlisted = useWishlistStore(state => state.items.includes(resolvedParams.id));
+  const isWishlisted = useWishlistStore(state => state.items.includes(params.id));
 
   const [activeTab, setActiveTab] = useState('description');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
