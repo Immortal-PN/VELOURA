@@ -111,11 +111,13 @@ export const useOrderStore = create<OrderStore>((set) => ({
 interface ProductStore {
   products: any[];
   addProduct: (product: any) => void;
+  updateProduct: (id: string, updates: any) => void;
   deleteProduct: (id: string) => void;
 }
 
-export const useProductStore = create<ProductStore>((set) => ({
+export const useProductStore = create<ProductStore>()((set) => ({
   products: defaultProducts,
   addProduct: (product) => set((state) => ({ products: [product, ...state.products] })),
+  updateProduct: (id, updates) => set((state) => ({ products: state.products.map(p => p.id === id ? { ...p, ...updates } : p) })),
   deleteProduct: (id) => set((state) => ({ products: state.products.filter(p => p.id !== id) }))
 }));

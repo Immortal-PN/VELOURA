@@ -1,13 +1,11 @@
 'use client';
 import Link from 'next/link';
-import { useCartStore, useWishlistStore, useAuthStore } from '@/lib/store';
+import { useCartStore, useAuthStore } from '@/lib/store';
 import { useEffect } from 'react';
 
 export default function Navbar() {
   const cartItems = useCartStore((state) => state.items);
-  const wishlistItems = useWishlistStore((state) => state.items);
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const wishlistCount = wishlistItems.length;
   const user = useAuthStore(s => s.user);
   const initialize = useAuthStore(s => s.initialize);
 
@@ -27,16 +25,9 @@ export default function Navbar() {
             <span className='absolute -top-2 -right-4 bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>{cartCount}</span>
           )}
         </Link>
-        <Link href='/account' className='relative hover:text-gold transition-colors'>
-          ♥
-          {wishlistCount > 0 && (
-            <span className='absolute -top-2 -right-4 bg-blush text-primary text-xs rounded-full h-5 w-5 flex items-center justify-center'>{wishlistCount}</span>
-          )}
-        </Link>
         <Link href={user ? '/account' : '/login'} className='hover:text-gold transition-colors'>
           {user ? user.name?.split(' ')[0] || 'Account' : 'Login'}
         </Link>
-        <Link href='/admin' className='text-xs text-secondary/60 hover:text-gold transition-colors'>Admin</Link>
       </div>
     </nav>
   );

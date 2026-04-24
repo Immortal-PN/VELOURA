@@ -69,7 +69,7 @@ export default function Product({ params }: { params: Promise<{ id: string }> })
             <span className='text-sm text-secondary'>(128 Reviews)</span>
           </div>
           
-          <p className='text-secondary mb-8 leading-relaxed text-lg'>A delicate blend of elegance and charm. Crafted to make every moment special. This piece is designed to be worn alone for a subtle statement or layered for a more dramatic look.</p>
+          <p className='text-secondary mb-8 leading-relaxed text-lg'>{product.description || 'A delicate blend of elegance and charm. Crafted to make every moment special. This piece is designed to be worn alone for a subtle statement or layered for a more dramatic look.'}</p>
           
           <ul className='mb-12 text-primary space-y-3'>
             <li className="flex items-center gap-3">
