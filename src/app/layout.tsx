@@ -4,6 +4,7 @@ import "./globals.css";
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from '@vercel/analytics/next';
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-body" });
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
