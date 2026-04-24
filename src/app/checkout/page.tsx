@@ -5,7 +5,10 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { useCartStore, useAuthStore, useOrderStore } from '@/lib/store';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
+
+const GPAY_QR_URL = 'https://zyjqhivvmiowuzefvqpx.supabase.co/storage/v1/object/public/assets/gpay-qr.png';
 
 export default function Checkout() {
   const [step, setStep] = useState(1);
@@ -142,7 +145,10 @@ export default function Checkout() {
           <div className='w-full lg:w-1/2'>
             <h2 className='font-heading text-3xl mb-8 text-primary'>Scan & Pay</h2>
             <p className='text-secondary mb-6 text-lg'>Total: <span className="text-gold font-heading text-2xl">₹{total}</span></p>
-            <div className='w-56 h-56 bg-white border-2 border-blush/30 mx-auto lg:mx-0 mb-8 rounded-2xl flex items-center justify-center text-secondary shadow-sm'>[GPay QR]</div>
+            <div className='relative mx-auto lg:mx-0 mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-blush/30' style={{width: 224, height: 224}}>
+              <Image src={GPAY_QR_URL} alt='GPay QR Code' fill className='object-cover' unoptimized />
+            </div>
+            <p className='text-center lg:text-left text-secondary text-sm mb-6'>UPI: <span className='font-medium text-primary'>7977036308@fam</span></p>
             <div className='border-2 border-dashed border-blush/40 rounded-2xl p-8 mb-8 bg-white'>
               <p className='text-primary font-medium mb-4'>Upload Payment Screenshot</p>
               <input type='file' accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} className='block text-sm text-secondary' />
@@ -180,7 +186,7 @@ export default function Checkout() {
           <p className='text-secondary mb-8'>Your order has been placed successfully.</p>
           <p className='font-heading text-xl mb-8 bg-ivory p-4 rounded-xl inline-block'>Order ID: <span className="text-gold">{orderId}</span></p>
           <div className="flex flex-col gap-3">
-            <a href={`https://wa.me/1234567890?text=Hello,%20I%20have%20placed%20order%20${orderId}%20for%20₹${total}.%20Please%20verify%20my%20payment.`} target='_blank' rel='noreferrer'>
+            <a href={`https://wa.me/917977036308?text=Hello%2C%20I%20have%20placed%20order%20${orderId}%20for%20%E2%82%B9${total}.%20Please%20verify%20my%20payment.`} target='_blank' rel='noreferrer'>
               <Button className='w-full bg-green-500 hover:bg-green-600 border-none !text-white'>Share on WhatsApp</Button>
             </a>
             <Link href='/account'><Button variant='secondary' className='w-full'>View Order</Button></Link>
